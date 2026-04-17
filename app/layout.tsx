@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Roboto } from "next/font/google";
+import { Geist, Geist_Mono, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/header";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const roboto = Roboto({ subsets: ['latin'], variable: '--font-sans' });
+const nunitoSans = Nunito_Sans({variable:'--font-sans'});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,16 +29,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="ru"
-      className={cn("font-sans", roboto.variable, "dark1")}
-    >
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    
+    <html lang="ru" className={cn("font-sans", nunitoSans.variable, 'dark')}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
+          enableColorScheme={false}
         >
           <Header />
           {children}

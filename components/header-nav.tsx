@@ -6,31 +6,22 @@ import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { Tabs, TabsList, TabsTrigger } from "./ui/tabs"
-import { LayoutList, Moon, Plus, Sun, Users } from "lucide-react"
+import { LayoutList, Plus, Users } from "lucide-react"
 import { signOut } from "next-auth/react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { useTheme } from "next-themes";
+import { DropdownMenuTheme } from "./dropdown-menu-theme";
 
 type Props = {
     session: Session | null
 }
 
 export function HeaderNav({ session }: Props) {
-
     const pathname = usePathname();
     const tabValue = getTabValue(pathname);
 
-    
-    const { setTheme } = useTheme()
-
     if (!session?.user) {
         return (
-            <div className="flex justify-end">
+            <div className="flex gap-2 justify-end">
+                <DropdownMenuTheme />
                 <Button variant="secondary">
                     <Link href="/login">Войти</Link>
                 </Button>
@@ -65,27 +56,8 @@ export function HeaderNav({ session }: Props) {
                     </TabsList>
                 </Tabs>
             </div>
-            <div className="flex justify-end items-center">
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="icon">
-                            <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-                            <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-                            <span className="sr-only">Toggle theme</span>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuItem onClick={() => setTheme("light")}>
-                            Светлая
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setTheme("dark")}>
-                            Тёмная
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => setTheme("system")}>
-                            Системная
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+            <div className="flex justify-end gap-2 items-center">
+                <DropdownMenuTheme />
                 <Button
                     variant="ghost"
                     size="sm"
