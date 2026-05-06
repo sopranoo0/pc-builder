@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PC builder",
+  title: "PC builder No1",
   description: "Generat PC configurator",
 };
 
@@ -30,13 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     
-    <html lang="ru" className={cn("font-sans", nunitoSans.variable, 'dark')}>
+    <html lang="ru" className={cn("font-sans", nunitoSans.variable)}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
           enableColorScheme={false}
